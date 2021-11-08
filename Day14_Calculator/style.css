@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    background: linear-gradient(to right, rgb(69, 69, 199), rgb(108, 202, 108));
+    height: 100%;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1920px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1 {
+    margin: 300px;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 55px;
+
+    color: rgb(23, 223, 179);
+    text-align: center;
+
+    transition: color 0.3s ease;
+}
