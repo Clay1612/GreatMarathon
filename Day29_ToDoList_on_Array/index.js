@@ -65,7 +65,88 @@ function changeStatus(task, status) {
         list[taskIndex].status = status;
         return 'Task changed';
     } else {
-
+        return 'Status is not valid or task is not found';
     }
-    return 'Status is not valid';
 }
+
+function showList() {
+    let toDoTasks = [];
+    let inProgressTasks = [];
+    let doneTasks = [];
+    list.forEach( function (item) {
+        switch (item.status) {
+            case TO_DO:
+                toDoTasks.push(item.name)
+                break;
+            case IN_PROGRESS:
+                inProgressTasks.push(item.name)
+                break;
+            case DONE:
+                doneTasks.push(item.name)
+                break;
+        }
+    })
+    toDoTasks = toDoTasks.join('\n \t');
+    inProgressTasks = inProgressTasks.join('\n \t');
+    doneTasks = doneTasks.join('\n \t');
+    console.log( TO_DO + ': \n \t' + toDoTasks );
+    console.log( IN_PROGRESS + ': \n \t' + inProgressTasks );
+    console.log( DONE + ': \n \t' + doneTasks );
+}
+
+function showBy(taskValue) {
+    switch (taskValue) {
+        case 'status':
+            showList();
+            break;
+        case 'priority':
+            console.log('high:');
+            for (let task of list) {
+                if (task.priority === 'high') console.log('\t' + task.name);
+            }
+            console.log('low:');
+            for (let task of list) {
+                if (task.priority === 'low') console.log('\t' + task.name);
+            }
+            break;
+        case undefined:
+            console.log('Show by what?');
+            break;
+        default:
+            console.log('Selected parameter is not valid')
+    }
+}
+
+//Tests
+showList();
+console.log('-----------');
+console.log( addTask('go to gym') );
+console.log( addTask('go to gym') );
+console.log( changeStatus('go to gym', 'In Progress') );
+console.log( changeStatus('go to gym', 'Ready') );
+console.log( changeStatus('go to bath', 'Done') );
+console.log( deleteTask('make a bed') );
+console.log( deleteTask('make a bed') );
+console.log('-----------');
+showList();
+console.log('-----------');
+showBy('priority')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
