@@ -57,6 +57,10 @@
     background-color: #4B5EFC;
 }
 
+.calculator__operator-button > span {
+    display: none;
+}
+
 div:nth-last-child(2) {
     grid-column: 1/4;
 }
