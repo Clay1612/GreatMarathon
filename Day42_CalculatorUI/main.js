@@ -1,58 +1,76 @@
 'use strict'
-let operation;
-let counter;
+let operator = '';
+let counter = '';
 let firstNumber;
-let SecondNumber;
-let result;
+let secondNumber;
+let result = '';
 
 const numberButtons =  document.querySelectorAll('.calculator__number-button');
 const operatorButtons = document.querySelectorAll('.calculator__operator-button');
 const calculationButton = document.querySelector('.calculator__calculation-button');
+const calculatorResultField = document.querySelector('.calculator__result-field');
+const clearButton = document.querySelector('.calculator__clear-button');
+const backActionButton = document.querySelector('.calculator__back-action-button');
+
+function calc() {
+    switch (operator) {
+        case '+':
+            result = firstNumber + secondNumber;
+            break;
+        case '-':
+            result = firstNumber - secondNumber;
+            break;
+        case '×':
+            result = firstNumber * secondNumber;
+            break;
+        case '÷':
+            result = firstNumber / secondNumber;
+            break;
+    }
+}
+
+function clearValues() {
+    counter = '';
+    firstNumber = '';
+    operator = '';
+    secondNumber = '';
+    calculatorResultField.value = 0;
+}
+
+clearButton.addEventListener('click', clearValues);
 
 for (let number of numberButtons) {
     number.addEventListener('click', function () {
-        if (counter) {
-            counter += number.innerHTML;
-        } else {
-            counter = number.innerHTML;
-        }
+        counter += number.innerHTML;
+        calculatorResultField.value = counter;
     })
 }
 
-for (let operator of operatorButtons) {
-    operator.addEventListener('click', function () {
-        if (counter) {
-            firstNumber = Number(firstNumber = counter);
-            counter = null;
+for (let operation of operatorButtons) {
+    operation.addEventListener('click', function () {
+        if (operator !== '') {
+            secondNumber = Number(counter);
+            calc();
+            firstNumber = result;
+            operator = operation.firstElementChild.innerHTML;
+            counter = '';
         }
-        operation = operator.firstElementChild.innerHTML;
+        if (counter !== '') {
+            firstNumber = Number(counter);
+            counter = '';
+        }
+        operator = operation.firstElementChild.innerHTML;
+        calculatorResultField.value = operator;
     })
 }
 
-function calc() {
-    switch (operation) {
-        case '+':
-            result = Number(firstNumber) + Number(counter);
-            break;
-        case '-':
-            result = Number(firstNumber) - Number(counter);
-            break
-        case '*':
-            result = Number(firstNumber) * Number(counter);
-            break
-        case ':':
-            result = Number(firstNumber) / Number(counter);
-            break
-    }
-    return result;
-}
-
-calculationButton.addEventListener('click', function (){
+calculationButton.addEventListener('click', function () {
+    secondNumber = Number(counter);
     calc();
-    console.log(result);
+    calculatorResultField.value = result;
 });
 
-
-
-
-
+backActionButton.addEventListener('click', function () {
+    counter = counter.substr(0, counter.length - 1);
+    calculatorResultField.value = counter;
+});
