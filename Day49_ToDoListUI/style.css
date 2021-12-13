@@ -50,6 +50,9 @@ body {
     font-weight: normal;
     font-size: 18px;
     line-height: 21px;
+
+    border: 1px solid #989898;
+    border-radius: 6px;
 }
 
 .todolist__add-task-button {
@@ -83,7 +86,7 @@ body {
     opacity: 0;
 }
 
-.todolist__checkbox-field-label {
+.todolist__checkbox-field+label {
     position: absolute;
     top: 12px;
     left: 12px;
@@ -96,7 +99,7 @@ body {
     border-radius: 50%;
 }
 
-.todolist__checkbox-field-label::before {
+.todolist__checkbox-field+label::before {
     content: '';
     position: absolute;
     top: 2px;
@@ -106,8 +109,11 @@ body {
     width: 14px;
     height: 14px;
 
-    background: #C4C4C4;
     border-radius: 50%;
+}
+
+.todolist__task--done {
+    background-color: #F4F4F4;
 }
 
 .todolist__delete-button {
