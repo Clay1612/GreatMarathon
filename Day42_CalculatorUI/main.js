@@ -1,16 +1,10 @@
-'use strict'
+import {buttons} from "./view.js";
+
 let operator = '';
 let counter = '';
 let firstNumber;
 let secondNumber;
 let result = '';
-
-const numberButtons =  document.querySelectorAll('.calculator__number-button');
-const operatorButtons = document.querySelectorAll('.calculator__operator-button');
-const calculationButton = document.querySelector('.calculator__calculation-button');
-const calculatorResultField = document.querySelector('.calculator__result-field');
-const clearButton = document.querySelector('.calculator__clear-button');
-const backActionButton = document.querySelector('.calculator__back-action-button');
 
 function calc() {
     switch (operator) {
@@ -34,19 +28,19 @@ function clearValues() {
     firstNumber = '';
     operator = '';
     secondNumber = '';
-    calculatorResultField.value = 0;
+    buttons.calculatorResultField.value = 0;
 }
 
-clearButton.addEventListener('click', clearValues);
+buttons.clear.addEventListener('click', clearValues);
 
-for (let number of numberButtons) {
+for (let number of buttons.number) {
     number.addEventListener('click', function () {
         counter += number.innerHTML;
-        calculatorResultField.value = counter;
+        buttons.calculatorResultField.value = counter;
     })
 }
 
-for (let operation of operatorButtons) {
+for (let operation of buttons.operator) {
     operation.addEventListener('click', function () {
         if (operator !== '') {
             secondNumber = Number(counter);
@@ -60,17 +54,17 @@ for (let operation of operatorButtons) {
             counter = '';
         }
         operator = operation.firstElementChild.innerHTML;
-        calculatorResultField.value = operator;
+        buttons.calculatorResultField.value = operator;
     })
 }
 
-calculationButton.addEventListener('click', function () {
+buttons.calculation.addEventListener('click', function () {
     secondNumber = Number(counter);
     calc();
-    calculatorResultField.value = result;
+    buttons.calculatorResultField.value = result;
 });
 
-backActionButton.addEventListener('click', function () {
+buttons.backAction.addEventListener('click', function () {
     counter = counter.substr(0, counter.length - 1);
-    calculatorResultField.value = counter;
+    buttons.calculatorResultField.value = counter;
 });
