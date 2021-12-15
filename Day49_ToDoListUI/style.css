@@ -19,8 +19,8 @@ body {
     background-color: #FFFFFF;
 }
 
-.todolist__high-priority,
-.todolist__low-priority {
+.todolist__high-priority-title,
+.todolist__low-priority-title {
     font-family: 'Roboto', serif;
     font-size: 18px;
     line-height: 21px;
@@ -62,6 +62,7 @@ body {
 
     width: 20px;
     height: 20px;
+
     border: none;
     background: url("assets/images/addTaskIcon.svg") no-repeat 50% 50%;
 }
