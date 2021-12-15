@@ -28,11 +28,8 @@ body {
     font-style: normal;
 }
 
-.todolist__form {
-    position: relative;
-}
-
-.todolist__task-field {
+.todolist__add-task-field,
+.todolist__task {
     position: relative;
 
     padding: 0;
@@ -40,6 +37,7 @@ body {
     border: none;
 }
 
+.todolist__newText-field,
 .todolist__text-field {
     padding: 12px;
     margin-bottom: 8px;
@@ -53,6 +51,11 @@ body {
 
     border: 1px solid #989898;
     border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+.todolist__text-field {
+    padding-left: 45px;
 }
 
 .todolist__add-task-button {
@@ -65,10 +68,6 @@ body {
 
     border: none;
     background: url("assets/images/addTaskIcon.svg") no-repeat 50% 50%;
-}
-
-.todolist__task {
-    padding-left: 45px;
 }
 
 .todolist__checkbox-field,
@@ -113,8 +112,8 @@ body {
     border-radius: 50%;
 }
 
-.todolist__task--done {
-    background-color: #F4F4F4;
+.todolist__checkbox-field+label.active::before {
+    background-color: #C4C4C4;
 }
 
 .todolist__delete-button {
@@ -123,4 +122,8 @@ body {
 
     border: none;
     background: url("assets/images/deleteTaskIcon.svg") no-repeat 50% 50%;
+}
+
+.active {
+    background-color:  #F4F4F4;
 }
