@@ -11,24 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="#" class="todolist">
+    <main class="todolist">
         <h2 class="todolist__high-priority-title">HIGH</h2>
-        <fieldset class="todolist__task-field">
+        <form action="#" class="todolist__task-field">
             <input type="text" class="todolist__text-field add-task" placeholder="Добавить важных дел">
             <input type="submit" value="" class="todolist__add-task-button high-priority">
-        </fieldset>
-        <fieldset class="todolist__task-field">
+        </form>
+        <form action="#" class="todolist__task-field">
             <input id="done-checkbox" type="checkbox" class="todolist__checkbox-field">
             <label for="done-checkbox"></label>
             <input type="text" class="todolist__text-field todolist__task" value="Начать делать задачу">
             <input type="button" class="todolist__delete-button">
-        </fieldset>
+        </form>
         <h2 class="todolist__low-priority-title">LOW</h2>
-        <fieldset class="todolist__task-field">
+        <form action="#" class="todolist__task-field">
             <input type="text" class="todolist__text-field add-task" placeholder="Добавить">
             <input type="submit" value="" class="todolist__add-task-button low-priority">
-        </fieldset>
-    </form>
+        </form>
+    </main>
 <script src="main.js" type="module"></script>
 </body>
 </html>
