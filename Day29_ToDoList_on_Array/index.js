@@ -30,7 +30,10 @@ function isTaskInList(task) {
 }
 
 function addTask(task, priority) {
-    if ( !isTaskInList(task) ) {
+    try {
+        if (isTaskInList(task)) {
+            throw new Error('Error. Task is already added')
+        }
         let newTask = {
             name: task,
             status: TO_DO,
@@ -39,33 +42,40 @@ function addTask(task, priority) {
         if (!priority) newTask.priority = 'low';
         list.push(newTask);
         return 'task added';
-    } else {
-        return 'Error. Task is already added';
+    } catch (error) {
+        return error.message;
     }
 }
 
 function deleteTask(task) {
-    if ( isTaskInList(task) ) {
+    try {
+        if ( !isTaskInList(task) ) {
+            throw new Error('Task is not found');
+        }
         let taskIndex = list.findIndex( function (item) {
             return item.name === task;
         })
         list.splice(taskIndex, 1);
         return 'Task deleted';
-    } else {
-        return 'Task is not found';
+    } catch (error) {
+        return error.message
     }
 }
 
 function changeStatus(task, status) {
     const isStatusValid = (status === TO_DO || status === IN_PROGRESS || status === DONE);
-    if ( isStatusValid && isTaskInList(task) ) {
-        let taskIndex = list.findIndex( function (item) {
-            return item.name === task;
-        })
-        list[taskIndex].status = status;
-        return 'Task changed';
-    } else {
-        return 'Status is not valid or task is not found';
+    try {
+        if ( isStatusValid && isTaskInList(task) ) {
+            let taskIndex = list.findIndex( function (item) {
+                return item.name === task;
+            })
+            list[taskIndex].status = status;
+            return 'Task changed';
+        } else {
+            throw new Error('Status is not valid or task is not found');
+        }
+    } catch (error) {
+        return error.message;
     }
 }
 
@@ -131,9 +141,6 @@ console.log('-----------');
 showList();
 console.log('-----------');
 showBy('priority')
-
-
-
 
 
 
