@@ -1,22 +1,36 @@
 'use strict'
 const checkSexForm = document.querySelector('.content__form');
-const nameField = document.querySelector('.form__name-input');
-const result = document.querySelector('.content__result-field');
+
+const fields = {
+    nameField: document.querySelector('.form__name-input'),
+    genderResultField: document.getElementById('gender-result'),
+    countryResultField: document.getElementById('country-result'),
+};
 
 checkSexForm.addEventListener('submit', function () {
     event.preventDefault()         //Basic fix of page reload at the beginning of script execution
 
-    const firstName = nameField.value;
-    const serverUrl = 'https://api.genderize.io';
-    const url = `${serverUrl}?name=${firstName}`;
+    const firstName = fields.nameField.value;
+    const serverGenderUrl = 'https://api.genderize.io';
+    const serverCountryURL = 'https://api.nationalize.io';
+    const genderUrl = `${serverGenderUrl}?name=${firstName}`;
+    const countryUrl = `${serverCountryURL}?name=${firstName}`;
 
-    let promise = fetch(url);
-    promise.then( function (response) {
+    let genderPromise = fetch(genderUrl);
+    genderPromise.then( function (response) {
         let json = response.json();
         json.then( function (value) {
-            result.textContent = `${firstName} is ${value.gender}`;
+            fields.genderResultField.textContent = `${firstName} is ${value.gender}`;
         })
     })
 
-    nameField.value = '';
+    let countryPromise = fetch(countryUrl);
+    countryPromise.then( function (response) {
+        let json = response.json();
+        json.then( function (value) {
+           fields.countryResultField.textContent = `${firstName} from ${value.country[0].country_id}`;
+        } )
+    })
+
+    fields.nameField.value = '';
 })

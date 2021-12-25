@@ -11,7 +11,7 @@ body {
 .content {
     margin: 20px auto;
     width: 355px;
-    height: 155px;
+    height: 200px;
     border-radius: 10px;
     background-color: #85000E;
     border: 1px solid #FF3349;
@@ -24,6 +24,7 @@ body {
 
 .form__name-input,
 .content__result-field {
+    margin-bottom: 15px;
     height: 30px;
 
     font-size: 20px;
