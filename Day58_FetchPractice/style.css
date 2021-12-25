@@ -4,12 +4,17 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #FFFFE0;
+}
+
 .content {
     margin: 20px auto;
-    width: 375px;
+    width: 355px;
     height: 155px;
     border-radius: 10px;
     background-color: #85000E;
+    border: 1px solid #FF3349;
 }
 
 .form {
