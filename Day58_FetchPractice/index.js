@@ -18,19 +18,17 @@ checkSexForm.addEventListener('submit', function () {
 
     let genderPromise = fetch(genderUrl);
     genderPromise.then( function (response) {
-        let json = response.json();
-        json.then( function (value) {
-            fields.genderResultField.textContent = `${firstName} is ${value.gender}`;
-        })
+        return response.json();
+    }).then( function (value) {
+        fields.genderResultField.textContent = `${firstName} is ${value.gender}`;
     })
 
     let countryPromise = fetch(countryUrl);
     countryPromise.then( function (response) {
-        let json = response.json();
-        json.then( function (value) {
-           fields.countryResultField.textContent = `${firstName} from ${value.country[0].country_id}`;
-        } )
-    })
+        return response.json();
+    }).then( function (value) {
+        fields.countryResultField.textContent = `${firstName} from ${value.country[0].country_id}`;
+    } )
 
     fields.nameField.value = '';
 })
