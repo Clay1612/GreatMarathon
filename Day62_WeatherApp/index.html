@@ -18,8 +18,30 @@
             <input type="text" placeholder="Aktobe" class="form__search-text-input">
             <input type="submit" class="form__search-button" value="">
         </form>
-        <section class="content__weather-info">
-
+        <section class="content__weather-info weather-info">
+            <div class="weather-info__wrapper now-section">
+                <div class="now-section__temperature">14&#176</div>
+                <div class="now-section__condition"></div>
+                <div class="now-section__city">
+                    <span>Aktobe</span>
+                    <button class="now-section__favorites-button"></button>
+                </div>
+            </div>
+            <div class="weather-info__wrapper details-section">
+                <div class="details-section__city">Aktobe</div>
+                <ul class="details-section__weather-parameters">
+                    <li class="details-section__parameter weather-temperature">Temperature: 14</li>
+                    <li class="details-section__parameter weather-feels-like">Feels like: 10</li>
+                    <li class="details-section__parameter weather-condition">Weather: Clouds</li>
+                    <li class="details-section__parameter weather-sunrise">Sunrise: 03:21</li>
+                    <li class="details-section__parameter weather-sunset">Sunset: 18:54</li>
+                </ul>
+            </div>
+            <div class="weather-info__switching-section">
+                <button class="weather-info__switch-button button-active">Now</button>
+                <button class="weather-info__switch-button">Details</button>
+                <button class="weather-info__switch-button">Forecast</button>
+            </div>
         </section>
         <section class="content__locations-list locations-list">
             <h2 class="locations-list__title">Added Locations:</h2>
