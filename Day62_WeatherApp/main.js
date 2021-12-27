@@ -1,3 +1,1 @@
-import {a} from './view.js';
-
-console.log(`Test ${a}`);
+// import {a} from './view.js';
