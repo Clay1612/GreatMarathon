@@ -3,7 +3,7 @@ export const UI_ELEMENTS = {
     citySearchInput: document.querySelector('.form__search-text-input'),
     nowDisplay : {
         temperature: document.querySelector('.now-section__temperature'),
-        city: document.querySelector('.now-section__city'),
+        city: document.querySelector('.now-section__city > span'),
         condition: document.querySelector('.now-section__condition'),
     },
 }
