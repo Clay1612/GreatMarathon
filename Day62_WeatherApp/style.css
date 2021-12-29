@@ -187,14 +187,17 @@
 }
 
 .locations-list__city {
+    position: relative;
+
     margin-bottom: 10px;
+
 }
 
 .locations-list__city:last-of-type {
     margin-bottom: 0;
 }
 
-.locations-list__city > button {
+.locations-list__city-name {
     padding: 0;
 
     font-family: 'Roboto', sans-serif;
@@ -203,5 +206,15 @@
 
     border: none;
     background: none;
+}
+.locations-list__delete-city {
+    position: absolute;
+    top: 4px;
+    right: 10px;
 
+    width: 25px;
+    height: 25px;
+
+    background: url("assets/images/deleteCityIcon.svg") no-repeat 50% 50%;
+    border: none;
 }
