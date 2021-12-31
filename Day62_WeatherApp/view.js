@@ -7,9 +7,7 @@ export const UI_ELEMENTS = {
         condition: document.querySelector('.now-section__condition'),
         AddToFavorites: document.querySelector('.now-section__favorites-button'),
     },
-    locationLIst: {
-        citiesList: document.querySelector('.locations-list__cities-list'),
-    },
+    favoriteCitiesList: document.querySelector('.locations-list__cities-list'),
 }
 
 export function createNewCity(cityName) {

@@ -95,7 +95,11 @@
     height: 25px;
 
     border: none;
-    background: url("assets/images/favorite.svg") no-repeat 50% 50%;
+    background: url("assets/images/favorite-active.svg") no-repeat 50% 50%;
+}
+
+.now-section__favorites-button:hover {
+
 }
 
 /* Details section */
