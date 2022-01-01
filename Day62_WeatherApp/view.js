@@ -12,7 +12,7 @@ export const UI_ELEMENTS = {
     favoriteCitiesList: document.querySelector('.locations-list__cities-list'),
 }
 
-export function createNewCity(cityName) {
+function createNewCity(cityName) {
     const newCity = document.createElement('li');
     newCity.className = 'locations-list__city';
 
@@ -28,29 +28,31 @@ export function createNewCity(cityName) {
     return newCity;
 }
 
-export function isCityInList(){
+function isCityInList(){
     return favoritesCities.find(function (item) {
-        return item.querySelector('.locations-list__city-name').textContent === UI_ELEMENTS.nowDisplay.city.textContent
+        return item === UI_ELEMENTS.nowDisplay.city.textContent
     })
 }
 
-export function addToFavorite() {
+function addToFavorite() {
     if (isCityInList() || UI_ELEMENTS.nowDisplay.city.textContent === 'City' ) {
         alert("City already in list");
     } else {
         const newCity = createNewCity(UI_ELEMENTS.nowDisplay.city.textContent);
+
         UI_ELEMENTS.favoriteCitiesList.append(newCity);
-        favoritesCities.push( newCity );
+        favoritesCities.push( newCity.querySelector('.locations-list__city-name').textContent );
         UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
 
         return newCity;
     }
 }
 
-export function removeFromFavorite(currentCity) {
-    favoritesCities.splice( favoritesCities.indexOf(currentCity),  1 )
+function removeFromFavorite(currentCity) {
+    favoritesCities.splice( favoritesCities.indexOf( currentCity.querySelector('.locations-list__city-name').textContent ),  1 )
     currentCity.remove();
     UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite.svg")';
+
 }
 
 export function favoriteCitiesHandler() {
@@ -59,6 +61,7 @@ export function favoriteCitiesHandler() {
 
     currentCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
         getWeatherInfo(currentCity.textContent);
+        UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
     })
 
     currentCity.querySelector('.locations-list__delete-city').addEventListener('click', function () {

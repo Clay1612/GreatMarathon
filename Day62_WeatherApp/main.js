@@ -53,4 +53,3 @@ UI_ELEMENTS.form.addEventListener('submit', function () {
     getWeatherInfo(UI_ELEMENTS.citySearchInput.value);
     UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite.svg")';
 })
-
