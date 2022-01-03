@@ -1,4 +1,5 @@
-import {UI_ELEMENTS, favoriteCitiesHandler} from './view.js';
+import {UI_ELEMENTS, favoriteCitiesHandler, createNewCity, removeFromFavorite} from './view.js';
+import {saveToStorageCurrentCity, saveToStorageFavoriteCity} from "./localStorage.js";
 
 const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f&units=metric';
@@ -22,8 +23,9 @@ function renderWeatherInfo(city) {
     UI_ELEMENTS.nowDisplay.temperature.innerHTML = `${Math.round(city.main.temp)}&#176`;
     UI_ELEMENTS.nowDisplay.city.textContent = city.name;
     UI_ELEMENTS.nowDisplay.condition.style.backgroundImage = `url("http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png")`
-
     UI_ELEMENTS.nowDisplay.AddToFavorites.addEventListener('click', favoriteCitiesHandler);
+
+    saveToStorageCurrentCity(city.name);
 
     UI_ELEMENTS.form.reset();
 }
@@ -53,3 +55,30 @@ UI_ELEMENTS.form.addEventListener('submit', function () {
     getWeatherInfo(UI_ELEMENTS.citySearchInput.value);
     UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite.svg")';
 })
+
+if (localStorage.getItem('favoriteCities') ) {
+    const json = JSON.parse( localStorage.getItem('favoriteCities') );
+
+    for (let city of json) {
+        const renderCity = createNewCity(city);
+
+        UI_ELEMENTS.favoriteCitiesList.append(renderCity);
+        favoritesCities.push(renderCity.querySelector('.locations-list__city-name').textContent );
+        saveToStorageFavoriteCity(favoritesCities);
+
+        renderCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
+            getWeatherInfo(renderCity.textContent);
+            UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
+        })
+
+        renderCity.querySelector('.locations-list__delete-city').addEventListener('click', function () {
+            removeFromFavorite(renderCity);
+        })
+    }
+}
+
+if ( localStorage.getItem('currentCity') ) {
+    getWeatherInfo( localStorage.getItem('currentCity') );
+}
+
+

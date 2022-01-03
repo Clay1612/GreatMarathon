@@ -1,4 +1,5 @@
 import {favoritesCities, getWeatherInfo} from './main.js'
+import {saveToStorageFavoriteCity, removeFromStorageFavoriteCity} from "./localStorage.js";
 
 export const UI_ELEMENTS = {
     form: document.querySelector('.form'),
@@ -12,7 +13,7 @@ export const UI_ELEMENTS = {
     favoriteCitiesList: document.querySelector('.locations-list__cities-list'),
 }
 
-function createNewCity(cityName) {
+export function createNewCity(cityName) {
     const newCity = document.createElement('li');
     newCity.className = 'locations-list__city';
 
@@ -43,16 +44,20 @@ function addToFavorite() {
         UI_ELEMENTS.favoriteCitiesList.append(newCity);
         favoritesCities.push( newCity.querySelector('.locations-list__city-name').textContent );
         UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
+        saveToStorageFavoriteCity(favoritesCities);
 
         return newCity;
     }
 }
 
-function removeFromFavorite(currentCity) {
+export function removeFromFavorite(currentCity) {
     favoritesCities.splice( favoritesCities.indexOf( currentCity.querySelector('.locations-list__city-name').textContent ),  1 )
     currentCity.remove();
-    UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite.svg")';
+    removeFromStorageFavoriteCity(currentCity.querySelector('.locations-list__city-name').textContent);
 
+   if(currentCity.querySelector('.locations-list__city-name').textContent === UI_ELEMENTS.nowDisplay.city.textContent) {
+       UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite.svg")';
+   }
 }
 
 export function favoriteCitiesHandler() {
