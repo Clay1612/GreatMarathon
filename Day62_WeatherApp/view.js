@@ -4,13 +4,24 @@ import {saveToStorageFavoriteCity, removeFromStorageFavoriteCity} from "./localS
 export const UI_ELEMENTS = {
     form: document.querySelector('.form'),
     citySearchInput: document.querySelector('.form__search-text-input'),
+    switchButtons : document.querySelectorAll('.weather-info__switch-button'),
     nowDisplay : {
+        display: document.querySelector('.now-section'),
         temperature: document.querySelector('.now-section__temperature'),
         city: document.querySelector('.now-section__city > span'),
         condition: document.querySelector('.now-section__condition'),
         AddToFavorites: document.querySelector('.now-section__favorites-button'),
     },
     favoriteCitiesList: document.querySelector('.locations-list__cities-list'),
+    detailsDisplay: {
+        display: document.querySelector('.details-section'),
+        city: document.querySelector('.details-section__city'),
+        temperature: document.querySelector('.weather-temperature'),
+        feelsLike: document.querySelector('.weather-feels-like'),
+        weatherCondition: document.querySelector('.weather-condition'),
+        sunrise: document.querySelector('.weather-sunrise'),
+        sunset: document.querySelector('.weather-sunset'),
+    },
 }
 
 export function createNewCity(cityName) {
@@ -71,5 +82,32 @@ export function favoriteCitiesHandler() {
 
     currentCity.querySelector('.locations-list__delete-city').addEventListener('click', function () {
         removeFromFavorite(currentCity);
+    })
+}
+
+function switchInfoDisplay(currentButton, switchButtons) {
+    for (let switchButton of switchButtons) {
+        switchButton.classList.remove('button-active');
+    }
+    currentButton.classList.add('button-active');
+
+    switch (currentButton.textContent) {
+        case 'Now':
+            UI_ELEMENTS.nowDisplay.display.style.display = 'grid';
+            UI_ELEMENTS.detailsDisplay.display.style.display = 'none';
+            break;
+        case 'Details':
+            UI_ELEMENTS.nowDisplay.display.style.display = 'none';
+            UI_ELEMENTS.detailsDisplay.display.style.display = 'grid';
+            break;
+        case 'Forecast':
+            console.log('SECTION FORECAST')                            //** FIX ME **
+            break;
+    }
+}
+
+for (let button of UI_ELEMENTS.switchButtons) {
+    button.addEventListener('click', function () {
+        switchInfoDisplay(button, UI_ELEMENTS.switchButtons);
     })
 }

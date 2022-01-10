@@ -1,5 +1,5 @@
-import {UI_ELEMENTS, favoriteCitiesHandler, createNewCity, removeFromFavorite} from './view.js';
-import {saveToStorageCurrentCity, saveToStorageFavoriteCity} from "./localStorage.js";
+import {UI_ELEMENTS, favoriteCitiesHandler, createNewCity, removeFromFavorite} from './view.js';     //**FIX ME**
+import {saveToStorageCurrentCity, saveToStorageFavoriteCity} from "./localStorage.js";               //**FIX ME**
 
 const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f&units=metric';
@@ -19,11 +19,32 @@ function serverRequest(url) {
     })
 }
 
+function getTimeFromTimestamp(timestamp) {
+    function checkTime(time) {
+        if (time < 10) {
+            time = '0' + time
+        }
+        return time
+    }
+    const date = new Date(timestamp * 1000);
+    const hours = checkTime( date.getHours() );
+    const minutes = checkTime( date.getMinutes() );
+    const seconds = checkTime( date.getSeconds() );
+    return `${hours}:${minutes}:${seconds}`;
+}
+
 function renderWeatherInfo(city) {
     UI_ELEMENTS.nowDisplay.temperature.innerHTML = `${Math.round(city.main.temp)}&#176`;
     UI_ELEMENTS.nowDisplay.city.textContent = city.name;
     UI_ELEMENTS.nowDisplay.condition.style.backgroundImage = `url("http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png")`
     UI_ELEMENTS.nowDisplay.AddToFavorites.addEventListener('click', favoriteCitiesHandler);
+
+    UI_ELEMENTS.detailsDisplay.city.textContent = city.name;
+    UI_ELEMENTS.detailsDisplay.temperature.innerHTML = `Temperature: ${Math.round(city.main.temp)}&#176`;
+    UI_ELEMENTS.detailsDisplay.feelsLike.innerHTML = `Feels like: ${Math.round(city.main.feels_like)}&#176`
+    UI_ELEMENTS.detailsDisplay.weatherCondition.textContent = `Weather: ${city.weather[0].main}`
+    UI_ELEMENTS.detailsDisplay.sunrise.textContent = `Sunrise: ${ getTimeFromTimestamp(city.sys.sunrise) }`;
+    UI_ELEMENTS.detailsDisplay.sunset.textContent = `Sunset: ${ getTimeFromTimestamp(city.sys.sunset) }`;
 
     saveToStorageCurrentCity(city.name);
 
@@ -60,7 +81,7 @@ if (localStorage.getItem('favoriteCities') ) {
     const json = JSON.parse( localStorage.getItem('favoriteCities') );
 
     for (let city of json) {
-        const renderCity = createNewCity(city);
+        const renderCity = createNewCity(city);                                                               //**FIX ME**
 
         UI_ELEMENTS.favoriteCitiesList.append(renderCity);
         favoritesCities.push(renderCity.querySelector('.locations-list__city-name').textContent );
@@ -80,5 +101,3 @@ if (localStorage.getItem('favoriteCities') ) {
 if ( localStorage.getItem('currentCity') ) {
     getWeatherInfo( localStorage.getItem('currentCity') );
 }
-
-
