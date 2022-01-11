@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+    width: 0;
+}
+
 .content {
     display: grid;
     grid-template-rows: 45px 390px;
@@ -52,14 +56,13 @@
 }
 
 /* Weather info section */
-
-/* Now section */
 .weather-info {
     border-right: 1px solid #000000;
 }
 
+/* Now section */
 .now-section {
-    display: grid;
+    display: none;
     grid-template-rows: 103px 197px 45px;
     grid-template-columns: 1fr;
 }
@@ -96,10 +99,6 @@
 
     border: none;
     background: url("assets/images/favorite-active.svg") no-repeat 50% 50%;
-}
-
-.now-section__favorites-button:hover {
-
 }
 
 /* Details section */
@@ -163,6 +162,76 @@
 .button-active {
     background-color: #000000;
     color: #FFFFFF;
+}
+
+/* Forecast Section */
+.forecast-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 120px 120px 120px;
+    grid-row-gap: 8px;
+
+    height: 345px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.forecast-section__city {
+    padding: 33px 0 0 17px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.forecast-section__weather-info-block {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 50px 48px;
+
+    margin: 0 17px;
+    padding: 10px;
+    width: 265px;
+    height: 120px;
+
+    border: 1px solid #000000;
+}
+
+.forecast-section__weather-info-block:last-of-type {
+    border-bottom: none;
+}
+
+.forecast-section__date,
+.forecast-section__time,
+.forecast-section__degrees,
+.forecast-section__feels-like,
+.forecast-section__condition-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.forecast-section__time,
+.forecast-section__conditions {
+    justify-self: right;
+}
+
+.forecast-section__temperature {
+    margin: 7px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.forecast-section__conditions {
+    display: grid;
+    grid-template-rows: 1fr 30px;
+}
+
+.forecast-section__condition-text {
+   margin: 0;
+}
+.forecast-section__condition-picture {
+    background: url("assets/images/forecast-icon-rain.svg") no-repeat 50% 50%;
 }
 
 /* Added Locations list */

@@ -19,29 +19,68 @@
             <input type="submit" class="form__search-button" value="">
         </form>
         <section class="content__weather-info weather-info">
-            <div class="weather-info__wrapper now-section">
+            <section class="weather-info__wrapper now-section">
                 <div class="now-section__temperature">T&#176</div>
                 <div class="now-section__condition"></div>
                 <div class="now-section__city">
                     <span>City</span>
                     <button class="now-section__favorites-button"></button>
                 </div>
-            </div>
-            <div class="weather-info__wrapper details-section">
-                <div class="details-section__city">Aktobe</div>
+            </section>
+            <section class="weather-info__wrapper details-section">
+                <div class="details-section__city">City</div>
                 <ul class="details-section__weather-parameters">
-                    <li class="details-section__parameter weather-temperature">Temperature: 14</li>
-                    <li class="details-section__parameter weather-feels-like">Feels like: 10</li>
-                    <li class="details-section__parameter weather-condition">Weather: Clouds</li>
-                    <li class="details-section__parameter weather-sunrise">Sunrise: 03:21</li>
-                    <li class="details-section__parameter weather-sunset">Sunset: 18:54</li>
+                    <li class="details-section__parameter weather-temperature">Temperature: </li>
+                    <li class="details-section__parameter weather-feels-like">Feels like: </li>
+                    <li class="details-section__parameter weather-condition">Weather: </li>
+                    <li class="details-section__parameter weather-sunrise">Sunrise: </li>
+                    <li class="details-section__parameter weather-sunset">Sunset: </li>
                 </ul>
-            </div>
-            <div class="weather-info__switching-section">
-                <button class="weather-info__switch-button button-active">Now</button>
+            </section>
+            <section class="weather-info__wrapper forecast-section">
+                <div class="forecast-section__city">Aktobe</div>
+                <div class="forecast-section__weather-info-block">
+                    <div class="forecast-section__date">17 May</div>
+                    <div class="forecast-section__time">12:00</div>
+                    <ul class="forecast-section__temperature">
+                        <li class="forecast-section__degrees">Temperature: 13&#176</li>
+                        <li class="forecast-section__feels-like">Feels like: 10&#176</li>
+                    </ul>
+                    <div class="forecast-section__conditions">
+                        <p class="forecast-section__condition-text">Rain</p>
+                        <div class="forecast-section__condition-picture"></div>
+                    </div>
+                </div>
+                <div class="forecast-section__weather-info-block">
+                    <div class="forecast-section__date">17 May</div>
+                    <div class="forecast-section__time">15:00</div>
+                    <ul class="forecast-section__temperature">
+                        <li class="forecast-section__degrees">Temperature: 13&#176</li>
+                        <li class="forecast-section__feels-like">Feels like: 10&#176</li>
+                    </ul>
+                    <div class="forecast-section__conditions">
+                        <p class="forecast-section__condition-text">Rain</p>
+                        <div class="forecast-section__condition-picture"></div>
+                    </div>
+                </div>
+                <div class="forecast-section__weather-info-block">
+                    <div class="forecast-section__date">17 May</div>
+                    <div class="forecast-section__time">18:00</div>
+                    <ul class="forecast-section__temperature">
+                        <li class="forecast-section__degrees">Temperature: 13&#176</li>
+                        <li class="forecast-section__feels-like">Feels like: 10&#176</li>
+                    </ul>
+                    <div class="forecast-section__conditions">
+                        <p class="forecast-section__condition-text">Rain</p>
+                        <div class="forecast-section__condition-picture"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="weather-info__switching-section">
+                <button class="weather-info__switch-button">Now</button>
                 <button class="weather-info__switch-button">Details</button>
-                <button class="weather-info__switch-button">Forecast</button>
-            </div>
+                <button class="weather-info__switch-button button-active">Forecast</button>
+            </section>
         </section>
         <section class="content__locations-list locations-list">
             <h2 class="locations-list__title">Added Locations:</h2>

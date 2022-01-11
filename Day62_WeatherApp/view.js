@@ -22,6 +22,9 @@ export const UI_ELEMENTS = {
         sunrise: document.querySelector('.weather-sunrise'),
         sunset: document.querySelector('.weather-sunset'),
     },
+    forecastDisplay: {
+        display: document.querySelector('.forecast-section'),
+    },
 }
 
 export function createNewCity(cityName) {
@@ -95,13 +98,17 @@ function switchInfoDisplay(currentButton, switchButtons) {
         case 'Now':
             UI_ELEMENTS.nowDisplay.display.style.display = 'grid';
             UI_ELEMENTS.detailsDisplay.display.style.display = 'none';
+            UI_ELEMENTS.forecastDisplay.display.style.display = 'none';
             break;
         case 'Details':
             UI_ELEMENTS.nowDisplay.display.style.display = 'none';
             UI_ELEMENTS.detailsDisplay.display.style.display = 'grid';
+            UI_ELEMENTS.forecastDisplay.display.style.display = 'none';
             break;
         case 'Forecast':
-            console.log('SECTION FORECAST')                            //** FIX ME **
+            UI_ELEMENTS.nowDisplay.display.style.display = 'none';
+            UI_ELEMENTS.detailsDisplay.display.style.display = 'none';
+            UI_ELEMENTS.forecastDisplay.display.style.display = 'grid';
             break;
     }
 }
