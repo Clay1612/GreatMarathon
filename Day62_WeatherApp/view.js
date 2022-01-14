@@ -1,4 +1,4 @@
-import {favoritesCities, getWeatherInfo} from './main.js'
+import {favoritesCities, currentWeatherUrl, forecastWeatherUrl, getWeatherInfo} from './main.js'
 import {saveToStorageFavoriteCity, removeFromStorageFavoriteCity} from "./localStorage.js";
 
 export const UI_ELEMENTS = {
@@ -24,6 +24,7 @@ export const UI_ELEMENTS = {
     },
     forecastDisplay: {
         display: document.querySelector('.forecast-section'),
+        forecastInfoSection: document.querySelectorAll('.forecast-section__weather-info-block'),
     },
 }
 
@@ -79,7 +80,7 @@ export function favoriteCitiesHandler() {
     if (currentCity === undefined) return;
 
     currentCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
-        getWeatherInfo(currentCity.textContent);
+        getWeatherInfo(currentCity.textContent, currentWeatherUrl, forecastWeatherUrl);
         UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
     })
 

@@ -62,7 +62,7 @@
 
 /* Now section */
 .now-section {
-    display: none;
+    display: grid;
     grid-template-rows: 103px 197px 45px;
     grid-template-columns: 1fr;
 }
@@ -166,7 +166,7 @@
 
 /* Forecast Section */
 .forecast-section {
-    display: grid;
+    display: none;
     grid-template-columns: 1fr;
     grid-template-rows: 60px 120px 120px 120px;
     grid-row-gap: 8px;
