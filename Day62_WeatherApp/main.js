@@ -1,14 +1,14 @@
-import {UI_ELEMENTS, favoriteCitiesHandler, createNewCity, removeFromFavorite} from './view.js';     //**FIX ME**
-import {saveToStorageCurrentCity, saveToStorageFavoriteCity} from "./localStorage.js";               //**FIX ME**
+import {UI_ELEMENTS, favoriteCitiesHandler, createNewCity, removeFromFavorite} from './view.js';
+import {saveToStorageCurrentCity, saveToStorageFavoriteCity} from "./localStorage.js";
 
-export const currentWeatherUrl = 'http://api.openweathermap.org/data/2.5/weather';
-export const forecastWeatherUrl = 'http://api.openweathermap.org/data/2.5/forecast';
-const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f&units=metric';
+export const APIUrls = {
+    currentWeather: 'http://api.openweathermap.org/data/2.5/weather',
+    forecastWeather: 'http://api.openweathermap.org/data/2.5/forecast',
+    Key: 'dcb827e237f5f1a3c296d1c3322ba770&units=metric',
+}
+
+
 export const favoritesCities = [];
-
-window.addEventListener('unhandledrejection', function (error) {
-    alert(`Sorry, ${error.reason}, script failed`);
-})
 
 function serverRequest(url) {
     return fetch(url)
@@ -27,6 +27,7 @@ function getTimeFromTimestamp(timestamp) {
         }
         return time
     }
+
     const date = new Date(timestamp * 1000);
     const hours = checkTime( date.getHours() );
     const minutes = checkTime( date.getMinutes() );
@@ -52,13 +53,18 @@ function renderWeatherInfo(city, WeatherUrl) {
 
     } else if (WeatherUrl.startsWith('http://api.openweathermap.org/data/2.5/forecast')) {
         let count = 0;
+        UI_ELEMENTS.forecastDisplay.city.textContent = city.city.name;
+
         for (let infoDisplay of UI_ELEMENTS.forecastDisplay.forecastInfoSection) {
             infoDisplay.querySelector('.forecast-section__date').textContent = city.list[count].dt_txt.slice(5, 10);
             infoDisplay.querySelector('.forecast-section__time').textContent = city.list[count].dt_txt.slice(10, 16);
-            infoDisplay.querySelector('.forecast-section__degrees').innerHTML = `Temperature: ${Math.round(city.list[count].main.temp)}&#176`;
-            infoDisplay.querySelector('.forecast-section__feels-like').innerHTML = `Feels like: ${Math.round(city.list[count].main.feels_like)}&#176`;
+            infoDisplay.querySelector('.forecast-section__degrees').innerHTML =
+                `Temperature: ${Math.round(city.list[count].main.temp)}&#176`;
+            infoDisplay.querySelector('.forecast-section__feels-like').innerHTML =
+                `Feels like: ${Math.round(city.list[count].main.feels_like)}&#176`;
             infoDisplay.querySelector('.forecast-section__condition-text').textContent = city.list[count].weather[0].main;
-            infoDisplay.querySelector('.forecast-section__condition-picture').style.backgroundImage = `url("http://openweathermap.org/img/wn/${city.list[count].weather[0].icon}@2x.png")`
+            infoDisplay.querySelector('.forecast-section__condition-picture').style.backgroundImage =
+                `url("http://openweathermap.org/img/wn/${city.list[count].weather[0].icon}@2x.png")`
             count++;
         }
     }
@@ -80,8 +86,8 @@ function errorProcessing(error) {
 }
 
 export function getWeatherInfo(cityName, currentWeatherAPI, forecastWeatherAPI) {
-    const currentWeatherUrl = `${currentWeatherAPI}?q=${cityName}&appid=${apiKey}`;
-    const forecastWeatherURL = `${forecastWeatherAPI}?q=${cityName}&appid=${apiKey}`;
+    const currentWeatherUrl = `${currentWeatherAPI}?q=${cityName}&appid=${APIUrls.Key}`;
+    const forecastWeatherURL = `${forecastWeatherAPI}?q=${cityName}&appid=${APIUrls.Key}`;
 
     serverRequest(currentWeatherUrl)
         .then(function (city) {
@@ -98,7 +104,7 @@ export function getWeatherInfo(cityName, currentWeatherAPI, forecastWeatherAPI) 
 
 UI_ELEMENTS.form.addEventListener('submit', function () {
     event.preventDefault();
-    getWeatherInfo(UI_ELEMENTS.citySearchInput.value, currentWeatherUrl, forecastWeatherUrl);
+    getWeatherInfo(UI_ELEMENTS.citySearchInput.value, APIUrls.currentWeather, APIUrls.forecastWeather);
     UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite.svg")';
 })
 
@@ -106,14 +112,14 @@ if (localStorage.getItem('favoriteCities') ) {
     const json = JSON.parse( localStorage.getItem('favoriteCities') );
 
     for (let city of json) {
-        const renderCity = createNewCity(city);                                                               //**FIX ME**
+        const renderCity = createNewCity(city);
 
         UI_ELEMENTS.favoriteCitiesList.append(renderCity);
         favoritesCities.push(renderCity.querySelector('.locations-list__city-name').textContent );
         saveToStorageFavoriteCity(favoritesCities);
 
         renderCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
-            getWeatherInfo(renderCity.textContent, currentWeatherUrl, forecastWeatherUrl);
+            getWeatherInfo(renderCity.textContent, APIUrls.currentWeather, APIUrls.forecastWeather);
             UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
         })
 
@@ -124,6 +130,5 @@ if (localStorage.getItem('favoriteCities') ) {
 }
 
 if ( localStorage.getItem('currentCity') ) {
-    getWeatherInfo( localStorage.getItem('currentCity'), currentWeatherUrl, forecastWeatherUrl );
+    getWeatherInfo(localStorage.getItem('currentCity'), APIUrls.currentWeather, APIUrls.forecastWeather);
 }
-
