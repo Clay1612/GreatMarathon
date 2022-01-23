@@ -126,9 +126,11 @@ function addButtonSwitchOnClick(buttons, index) {
         switchInfoDisplay(buttons[index], UI_ELEMENTS.switchButtons)
     });
 
-    if (index < buttons.length - 1) {
-        addButtonSwitchOnClick(buttons, index + 1);
+    if (index >= buttons.length - 1) {
+        return;
     }
+
+    addButtonSwitchOnClick(buttons, index + 1);
 }
 
 addButtonSwitchOnClick(UI_ELEMENTS.switchButtons, 0);

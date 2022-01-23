@@ -116,9 +116,11 @@ function renderFavoriteCities(cities, index) {
         removeFromFavorite(renderCity);
     })
 
-    if (index < cities.length - 1) {
-        renderFavoriteCities(cities, index + 1);
+    if (index >= cities.length - 1) {
+        return;
     }
+
+    renderFavoriteCities(cities, index + 1);
 }
 
 UI_ELEMENTS.form.addEventListener('submit', function () {
