@@ -98,6 +98,7 @@ function switchInfoDisplay(currentButton, switchButtons) {
     for (let switchButton of switchButtons) {
         switchButton.classList.remove('button-active');
     }
+
     currentButton.classList.add('button-active');
 
     switch (currentButton.textContent) {
@@ -119,8 +120,15 @@ function switchInfoDisplay(currentButton, switchButtons) {
     }
 }
 
-for (let button of UI_ELEMENTS.switchButtons) {
-    button.addEventListener('click', function () {
-        switchInfoDisplay(button, UI_ELEMENTS.switchButtons);
-    })
+function addButtonSwitchOnClick(buttons, index) {
+
+    buttons[index].addEventListener('click', function () {
+        switchInfoDisplay(buttons[index], UI_ELEMENTS.switchButtons)
+    });
+
+    if (index < buttons.length - 1) {
+        addButtonSwitchOnClick(buttons, index + 1);
+    }
 }
+
+addButtonSwitchOnClick(UI_ELEMENTS.switchButtons, 0);
