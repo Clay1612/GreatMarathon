@@ -10,14 +10,13 @@ export const APIUrls = {
 
 export const favoritesCities = [];
 
-function serverRequest(url) {
-    return fetch(url)
-        .then( function (response){
-            if (response.status === 404) {
-                throw new Error('404');
-            }
-            return response.json()
-    })
+async function serverRequest(url) {
+    let response = await fetch(url);
+
+    if (response.status === 404) {
+        throw new Error('404');
+    }
+    return response.json()
 }
 
 function getTimeFromTimestamp(timestamp) {
@@ -85,21 +84,41 @@ function errorProcessing(error) {
     }
 }
 
-export function getWeatherInfo(cityName, currentWeatherAPI, forecastWeatherAPI) {
+export async function getWeatherInfo(cityName, currentWeatherAPI, forecastWeatherAPI) {
     const currentWeatherUrl = `${currentWeatherAPI}?q=${cityName}&appid=${APIUrls.Key}`;
     const forecastWeatherURL = `${forecastWeatherAPI}?q=${cityName}&appid=${APIUrls.Key}`;
 
-    serverRequest(currentWeatherUrl)
-        .then(function (city) {
-            renderWeatherInfo(city, currentWeatherUrl)
-        })
-        .then(function () {
-            return serverRequest(forecastWeatherURL)                   // Promise chain to fix problem with double error if fetch is not valid
-        })
-        .then(function (city) {
-            renderWeatherInfo(city, forecastWeatherURL)
-        })
-        .catch(errorProcessing)
+    try {
+        let currentCity = await serverRequest(currentWeatherUrl);
+        renderWeatherInfo(currentCity, currentWeatherUrl);
+
+        let forecastCity = await serverRequest(forecastWeatherURL);
+        renderWeatherInfo(forecastCity, forecastWeatherURL);
+    } catch (error) {
+        errorProcessing(error);
+    }
+}
+
+function renderFavoriteCities(cities, index) {
+    const renderCity = createNewCity( cities[index] );
+
+    UI_ELEMENTS.favoriteCitiesList.append(renderCity);
+
+    favoritesCities.push(renderCity.querySelector('.locations-list__city-name').textContent );
+    saveToStorageFavoriteCity(favoritesCities);
+
+    renderCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
+        getWeatherInfo(renderCity.textContent, APIUrls.currentWeather, APIUrls.forecastWeather);
+        UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
+    })
+
+    renderCity.querySelector('.locations-list__delete-city').addEventListener('click', function () {
+        removeFromFavorite(renderCity);
+    })
+
+    if (index < cities.length - 1) {
+        renderFavoriteCities(cities, index + 1);
+    }
 }
 
 UI_ELEMENTS.form.addEventListener('submit', function () {
@@ -110,23 +129,7 @@ UI_ELEMENTS.form.addEventListener('submit', function () {
 
 if (localStorage.getItem('favoriteCities') ) {
     const json = JSON.parse( localStorage.getItem('favoriteCities') );
-
-    for (let city of json) {
-        const renderCity = createNewCity(city);
-
-        UI_ELEMENTS.favoriteCitiesList.append(renderCity);
-        favoritesCities.push(renderCity.querySelector('.locations-list__city-name').textContent );
-        saveToStorageFavoriteCity(favoritesCities);
-
-        renderCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
-            getWeatherInfo(renderCity.textContent, APIUrls.currentWeather, APIUrls.forecastWeather);
-            UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
-        })
-
-        renderCity.querySelector('.locations-list__delete-city').addEventListener('click', function () {
-            removeFromFavorite(renderCity);
-        })
-    }
+    renderFavoriteCities(json, 0);
 }
 
 if ( localStorage.getItem('currentCity') ) {
