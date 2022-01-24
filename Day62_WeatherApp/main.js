@@ -1,4 +1,4 @@
-import {UI_ELEMENTS, favoriteCitiesHandler, createNewCity, removeFromFavorite} from './view.js';
+import {UI_ELEMENTS, favoriteCitiesHandler} from './view.js';
 import {saveToStorageCurrentCity, saveToStorageFavoriteCity} from "./localStorage.js";
 
 export const APIUrls = {
@@ -100,27 +100,31 @@ export async function getWeatherInfo(cityName, currentWeatherAPI, forecastWeathe
 }
 
 function renderFavoriteCities(cities, index) {
-    const renderCity = createNewCity( cities[index] );
+    const viewModule = import('./view.js');
 
-    UI_ELEMENTS.favoriteCitiesList.append(renderCity);
+    viewModule.then(function (moduleObject) {
+        const renderCity = moduleObject.createNewCity( cities[index] );
 
-    favoritesCities.push(renderCity.querySelector('.locations-list__city-name').textContent );
-    saveToStorageFavoriteCity(favoritesCities);
+        UI_ELEMENTS.favoriteCitiesList.append(renderCity);
 
-    renderCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
-        getWeatherInfo(renderCity.textContent, APIUrls.currentWeather, APIUrls.forecastWeather);
-        UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
+        favoritesCities.push(renderCity.querySelector('.locations-list__city-name').textContent );
+        saveToStorageFavoriteCity(favoritesCities);
+
+        renderCity.querySelector('.locations-list__city-name').addEventListener('click', function () {
+            getWeatherInfo(renderCity.textContent, APIUrls.currentWeather, APIUrls.forecastWeather);
+            UI_ELEMENTS.nowDisplay.AddToFavorites.style.backgroundImage = 'url("./assets/images/favorite-active.svg")';
+        })
+
+        renderCity.querySelector('.locations-list__delete-city').addEventListener('click', function () {
+            moduleObject.removeFromFavorite(renderCity);
+        })
+
+        if (index >= cities.length - 1) {
+            return;
+        }
+
+        renderFavoriteCities(cities, index + 1);
     })
-
-    renderCity.querySelector('.locations-list__delete-city').addEventListener('click', function () {
-        removeFromFavorite(renderCity);
-    })
-
-    if (index >= cities.length - 1) {
-        return;
-    }
-
-    renderFavoriteCities(cities, index + 1);
 }
 
 UI_ELEMENTS.form.addEventListener('submit', function () {
