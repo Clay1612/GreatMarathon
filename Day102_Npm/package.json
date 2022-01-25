@@ -1,0 +1,22 @@
+{
+  "name": "todo_list",
+  "version": "1.0.0",
+  "description": "This is test project for learning how to work with NPM",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clay1612/GreatMarathon.git"
+  },
+  "keywords": [
+    "NPM"
+  ],
+  "author": "Clay1612",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Clay1612/GreatMarathon/issues"
+  },
+  "homepage": "https://github.com/Clay1612/GreatMarathon#readme"
+}

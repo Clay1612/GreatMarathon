@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #E5E5E5;
+}
+
+.todolist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 20px auto 0 auto;
+    width: 476px;
+
+    background-color: #FFFFFF;
+}
+
+.todolist__high-priority-title,
+.todolist__low-priority-title {
+    font-family: 'Roboto', serif;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.todolist__add-task-field,
+.todolist__task {
+    position: relative;
+
+    padding: 0;
+
+    border: none;
+}
+
+.todolist__newText-field,
+.todolist__text-field {
+    padding: 12px;
+    margin-bottom: 8px;
+    width: 460px;
+
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    border: 1px solid #989898;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+.todolist__text-field {
+    padding-left: 45px;
+}
+
+.todolist__add-task-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+    width: 20px;
+    height: 20px;
+
+    border: none;
+    background: url("assets/images/addTaskIcon.svg") no-repeat 50% 50%;
+}
+
+.todolist__checkbox-field,
+.todolist__delete-button {
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+}
+
+.todolist__checkbox-field {
+    top: 10px;
+    left: 12px;
+
+    z-index: -1;
+    opacity: 0;
+}
+
+.todolist__checkbox-field+label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    display: block;
+    width: 20px;
+    height: 20px;
+
+    border: 1px solid #998899;
+    border-radius: 50%;
+}
+
+.todolist__checkbox-field+label::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    display: block;
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+}
+
+.todolist__checkbox-field+label.active::before {
+    background-color: #C4C4C4;
+}
+
+.todolist__delete-button {
+    top: 15px;
+    right: 20px;
+
+    border: none;
+    background: url("assets/images/deleteTaskIcon.svg") no-repeat 50% 50%;
+}
+
+.active {
+    background-color:  #F4F4F4;
+}
