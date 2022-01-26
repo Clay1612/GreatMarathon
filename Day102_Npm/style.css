@@ -8,6 +8,18 @@ body {
     background-color: #E5E5E5;
 }
 
+.header__date {
+    margin-left: 50px;
+    padding-left: 15px;
+    width: 100px;
+    height: 30px;
+
+    font-size: 18px;
+    line-height: 28px;
+
+    border: 1px dashed black;
+}
+
 .todolist {
     display: flex;
     flex-direction: column;

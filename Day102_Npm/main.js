@@ -1,4 +1,8 @@
 import {createNewTask, inputs} from "./view.js";
+import { format } from 'date-fns';
+
+const currentDate = document.querySelector('.header__date');
+currentDate.textContent = format(new Date(), "do MMM");
 
 for (let task of inputs.addNewTask) {
     task.addEventListener('submit', function () {

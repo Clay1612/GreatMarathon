@@ -4,7 +4,7 @@
   "description": "This is test project for learning how to work with NPM",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/Clay1612/GreatMarathon/issues"
   },
-  "homepage": "https://github.com/Clay1612/GreatMarathon#readme"
+  "homepage": "https://github.com/Clay1612/GreatMarathon#readme",
+  "dependencies": {
+    "date-fns": "^2.28.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.2.1"
+  }
 }
