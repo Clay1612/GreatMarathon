@@ -1,0 +1,21 @@
+{
+  "name": "day105_js-cookie",
+  "version": "1.0.0",
+  "description": "This is test project for using js-cookie library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clay1612"
+  },
+  "keywords": [
+    "Js-Cookie"
+  ],
+  "author": "clay1612",
+  "license": "ISC",
+  "devDependencies": {
+    "js-cookie": "^3.0.1"
+  }
+}
