@@ -1,5 +1,6 @@
 import {UI_ELEMENTS, favoriteCitiesHandler} from './view.js';
-import {saveToStorageCurrentCity, saveToStorageFavoriteCity} from "./localStorage.js";
+import {saveToStorageFavoriteCity} from "./localStorage.js";
+import {saveCurrentCityCookie, getCookie} from "./cookie.js";
 
 export const APIUrls = {
     currentWeather: 'http://api.openweathermap.org/data/2.5/weather',
@@ -47,9 +48,6 @@ function renderWeatherInfo(city, WeatherUrl) {
         UI_ELEMENTS.detailsDisplay.weatherCondition.textContent = `Weather: ${city.weather[0].main}`
         UI_ELEMENTS.detailsDisplay.sunrise.textContent = `Sunrise: ${ getTimeFromTimestamp(city.sys.sunrise) }`;
         UI_ELEMENTS.detailsDisplay.sunset.textContent = `Sunset: ${ getTimeFromTimestamp(city.sys.sunset) }`;
-
-        saveToStorageCurrentCity(city.name);
-
     } else if (WeatherUrl.startsWith('http://api.openweathermap.org/data/2.5/forecast')) {
         let count = 0;
         UI_ELEMENTS.forecastDisplay.city.textContent = city.city.name;
@@ -91,6 +89,7 @@ export async function getWeatherInfo(cityName, currentWeatherAPI, forecastWeathe
     try {
         let currentCity = await serverRequest(currentWeatherUrl);
         renderWeatherInfo(currentCity, currentWeatherUrl);
+        saveCurrentCityCookie(currentCity.name);
 
         let forecastCity = await serverRequest(forecastWeatherURL);
         renderWeatherInfo(forecastCity, forecastWeatherURL);
@@ -138,6 +137,6 @@ if (localStorage.getItem('favoriteCities') ) {
     renderFavoriteCities(json, 0);
 }
 
-if ( localStorage.getItem('currentCity') ) {
-    getWeatherInfo(localStorage.getItem('currentCity'), APIUrls.currentWeather, APIUrls.forecastWeather);
+if (getCookie('currentCity')) {
+    getWeatherInfo(getCookie('currentCity'), APIUrls.currentWeather, APIUrls.forecastWeather);
 }

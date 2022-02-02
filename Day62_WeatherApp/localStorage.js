@@ -9,7 +9,3 @@ export function removeFromStorageFavoriteCity(city) {
 
     saveToStorageFavoriteCity(favoriteCities);
 }
-
-export function saveToStorageCurrentCity(city) {
-    localStorage.setItem('currentCity', city)
-}
