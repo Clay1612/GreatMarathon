@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Count Down App</title>
+  <title>Countdown</title>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="#">
 </head>
 <body>
-  <h1>New Project Init</h1>
+  <main class="content">
+    <h1 class="content__title">Countdown</h1>
+    <label class="content__field-label" for="enter-date-field">Choose date:</label>
+    <input type="date" class="content__enter-date-field" id="enter-date-field">
+    <label class="content__field-label" for="timer-field">This time left until this date:</label>
+    <input type="text" class="content__countdown-timer-field" id="timer-field" placeholder="Result will be here">
+  </main>
   <script src="index.js" type="module"></script>
 </body>
 </html>
