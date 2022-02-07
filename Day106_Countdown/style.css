@@ -29,10 +29,13 @@
     line-height: 24px;
 }
 
-.content__countdown-button {
+.content__buttons-wrapper {
     justify-self: center;
-
     margin: 0 0 5px 0;
+}
+
+.content__countdown-button,
+.content__stop-count-button {
     width: 150px;
     height: 30px;
 
@@ -42,15 +45,28 @@
     font-weight: bold;
     color: dimgray;
 
-    background-color: orange;
     border: 1px solid gray;
     border-radius: 5px;
+}
+
+.content__countdown-button {
+    background-color: greenyellow;
+}
+
+.content__stop-count-button {
+    background-color: lightcoral;
 }
 
 .content__countdown-button:active {
     color: #FFFFFF;
     background-color: purple;
-    border: 2px solid orange;
+    border: 2px solid greenyellow;
+}
+
+.content__stop-count-button:active {
+    color: #FFFFFF;
+    background-color: purple;
+    border: 2px solid lightcoral;
 }
 
 input:focus {

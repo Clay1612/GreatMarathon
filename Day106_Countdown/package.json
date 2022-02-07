@@ -4,7 +4,7 @@
   "description": "This is a small practice task, to do a simple count Down program",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx parcel.index.html"
   },
   "repository": {
     "type": "git",
