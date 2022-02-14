@@ -47,10 +47,17 @@ function addTask(task, priority) {
     }
 }
 
+class NotFoundError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    }
+}
+
 function deleteTask(task) {
     try {
         if ( !isTaskInList(task) ) {
-            throw new Error('Task is not found');
+            throw new NotFoundError('Task is not found');
         }
         let taskIndex = list.findIndex( function (item) {
             return item.name === task;
@@ -58,7 +65,7 @@ function deleteTask(task) {
         list.splice(taskIndex, 1);
         return 'Task deleted';
     } catch (error) {
-        return error.message
+        return error.message;
     }
 }
 
