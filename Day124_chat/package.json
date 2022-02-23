@@ -1,0 +1,22 @@
+{
+  "name": "day124_chat",
+  "version": "1.0.0",
+  "description": "This is Chat practice",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm i , npx parcel index.html , npx eslint yourfile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clay1612"
+  },
+  "keywords": [
+    "Chat"
+  ],
+  "author": "Clay1612",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "parcel": "^2.3.2"
+  }
+}
