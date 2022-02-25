@@ -16,7 +16,6 @@
   "author": "Clay1612",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.9.0",
-    "parcel": "^2.3.2"
+    "eslint": "^8.9.0"
   }
 }

@@ -5,24 +5,44 @@
   <title>Chat</title>
   <link rel="shortcut icon" href="#">
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="chat-header">
-    <button class="chat-header__options-button">Настройки</button>
-    <button class="chat-header__output-button">Выйти</button>
-  </header>
-  <main class="chat-content">
-    <div class="chat-content__message">
-      <p class="chat-content__text">Я: Добрый день!</p>
-      <time class="chat-content__time">18:45</time>
-    </div>
-  </main>
-  <footer class="chat-footer">
-    <form action="#" class="chat-footer__form">
-      <input type="text" placeholder="сообщение.." name="message-input" class="chat-footer__message-input">
-      <input type="submit" value="->" class="chat-footer__submit-button">
-    </form>
-  </footer>
+  <div class="chat-wrapper">
+    <header class="chat-header">
+      <button class="chat-header__options-button">Настройки</button>
+      <button class="chat-header__output-button">Выйти</button>
+    </header>
+    <main class="chat-content">
+      <div class="chat-content__message user-message">
+        <p class="chat-content__text">Я: Добрый день!</p>
+        <p class="chat-content__time">18:45</p>
+      </div>
+      <div class="chat-content__message">
+        <p class="chat-content__text">Собеседник мой: Добрый день!</p>
+        <p class="chat-content__time">18:45</p>
+      </div>
+      <div class="chat-content__message">
+        <p class="chat-content__text">Собеседник мой: А это второе и, кажется, оно очень
+          длинное, чтобы поместиться на
+          одной строке</p>
+        <p class="chat-content__time">18:45</p>
+      </div>
+      <div class="chat-content__message user-message non-read">
+        <p class="chat-content__text">Я: Добрый день!</p>
+        <p class="chat-content__time">18:45</p>
+      </div>
+    </main>
+    <footer class="chat-footer">
+      <form action="#" class="chat-footer__form">
+        <input type="text" placeholder="сообщение.." name="message-input" class="chat-footer__message-input">
+        <input type="submit" value="->" class="chat-footer__submit-button">
+      </form>
+    </footer>
+  </div>
   <script src="main.js" type="module"></script>
 </body>
 </html>
