@@ -7,7 +7,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Test</h1>
-  <script type = "module" src="main.js?<?=filemtime( 'main.js' )?>"></script>
+  <header class="chat-header">
+    <button class="chat-header__options-button">Настройки</button>
+    <button class="chat-header__output-button">Выйти</button>
+  </header>
+  <main class="chat-content">
+    <div class="chat-content__message">
+      <p class="chat-content__text">Я: Добрый день!</p>
+      <time class="chat-content__time">18:45</time>
+    </div>
+  </main>
+  <footer class="chat-footer">
+    <form action="#" class="chat-footer__form">
+      <input type="text" placeholder="сообщение.." name="message-input" class="chat-footer__message-input">
+      <input type="submit" value="->" class="chat-footer__submit-button">
+    </form>
+  </footer>
+  <script src="main.js" type="module"></script>
 </body>
 </html>
