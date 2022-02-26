@@ -40,6 +40,24 @@
           <input type="submit" value="->" class="options-popup__submit-name-button">
         </form>
       </section>
+      <section class="authorization-popup">
+        <h2 class="authorization-popup__header">Авторизация</h2>
+        <button class="authorization-popup__close-button">+</button>
+        <form action="#" class="authorization-popup__mail-form">
+          <label for="mail-field" class="authorization-popup__mail-field-label">Почта:</label>
+          <input type="text" name="mail-field" id="mail-field" class="authorization-popup__mail-field" placeholder="Введите вашу почту">
+          <input type="submit" value="Получить код" class="authorization-popup__submit-mail-button">
+        </form>
+      </section>
+      <section class="confirmation-popup">
+        <h2 class="confirmation-popup__header">Подтверждение</h2>
+        <button class="confirmation-popup__close-button">+</button>
+        <form action="#" class="confirmation-popup__code-form">
+          <label for="code-field" class="confirmation-popup__code-field-label">Код:</label>
+          <input type="text" name="code-field" id="code-field" class="confirmation-popup__code-field" placeholder="Введите код">
+          <input type="submit" value="Войти" class="confirmation-popup__submit-code-button">
+        </form>
+      </section>
     </div>
   </div>
   <script src="main.js" type="module"></script>
