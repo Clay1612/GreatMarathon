@@ -1,5 +1,7 @@
 import {UI_ELEMENTS} from './view.js';
 
+const authorizationRequestUrl = new URL('https://chat1-341409.oa.r.appspot.com/api/user');
+
 UI_ELEMENTS.sentMessageForm.addEventListener('submit', addMessage);
 
 UI_ELEMENTS.optionsButton.addEventListener('click', function () {
@@ -24,6 +26,18 @@ UI_ELEMENTS.popups.authorizationCloseButton.addEventListener('click', function (
 
 UI_ELEMENTS.popups.authorizationForm.addEventListener('submit', function () {
 	event.preventDefault();
+
+    const mail = {
+        email: document.querySelector('.authorization-popup__mail-field').value,
+    }
+
+    const request = fetch(`${authorizationRequestUrl}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(mail),
+    })
 
 	UI_ELEMENTS.popups.authorizationPopup.style.display = 'none';
 	UI_ELEMENTS.popups.confirmationPopup.style.display = 'grid';
