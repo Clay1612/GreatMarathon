@@ -39,7 +39,7 @@ body {
 }
 
 .chat-header__options-button,
-.chat-header__output-button{
+.chat-header__authorization-button {
     height: 32px;
 
     font-family: 'Roboto', sans-serif;
@@ -54,7 +54,7 @@ body {
     width: 98px;
 }
 
-.chat-header__output-button {
+.chat-header__authorization-button {
     justify-self: right;
     width: 66px;
 }
@@ -102,11 +102,11 @@ body {
     text-align: right;
 }
 
-.user-message {                              /* If message is from current User */
+.user-message {
     align-self: flex-end;
 }
 
-.non-read {                                  /* If message send, but not read already */
+.non-read {
     background-color: #F7F7F7;
 }
 
