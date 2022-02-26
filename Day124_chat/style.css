@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+/* Scroll customization */
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: darkgray;
+}
+
 body {
     background-color: #E5E5E5;
 }
@@ -47,15 +60,17 @@ body {
 }
 
 .chat-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 286px;
+    justify-items: end;
 
     margin-bottom: 8px;
     padding: 8px;
     height: 437px;
 
     border: 1px solid #000000;
+    overflow-x: hidden;
 }
 
 .chat-content__message {

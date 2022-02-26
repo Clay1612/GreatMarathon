@@ -17,24 +17,12 @@
       <button class="chat-header__output-button">Выйти</button>
     </header>
     <main class="chat-content">
-      <div class="chat-content__message user-message">
-        <p class="chat-content__text">Я: Добрый день!</p>
-        <p class="chat-content__time">18:45</p>
-      </div>
-      <div class="chat-content__message">
-        <p class="chat-content__text">Собеседник мой: Добрый день!</p>
-        <p class="chat-content__time">18:45</p>
-      </div>
-      <div class="chat-content__message">
-        <p class="chat-content__text">Собеседник мой: А это второе и, кажется, оно очень
-          длинное, чтобы поместиться на
-          одной строке</p>
-        <p class="chat-content__time">18:45</p>
-      </div>
-      <div class="chat-content__message user-message non-read">
-        <p class="chat-content__text">Я: Добрый день!</p>
-        <p class="chat-content__time">18:45</p>
-      </div>
+      <template class="chat-content__message-template">
+        <div class="chat-content__message user-message">
+          <p class="chat-content__text">Я: Добрый день!</p>
+          <p class="chat-content__time">18:45</p>
+        </div>
+      </template>
     </main>
     <footer class="chat-footer">
       <form action="#" class="chat-footer__form">
