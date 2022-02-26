@@ -1,3 +1,5 @@
+@import "popups.css";
+
 * {
     box-sizing: border-box;
 }
@@ -7,6 +9,8 @@ body {
 }
 
 .chat-wrapper {
+    position: relative;
+
     margin: 30px auto;
     padding: 8px;
     width: 320px;
@@ -83,11 +87,11 @@ body {
     text-align: right;
 }
 
-.user-message {
+.user-message {                              /* If message is from current User */
     align-self: flex-end;
 }
 
-.non-read {
+.non-read {                                  /* If message send, but not read already */
     background-color: #F7F7F7;
 }
 
