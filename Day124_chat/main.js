@@ -43,6 +43,7 @@ UI_ELEMENTS.popups.optionsForm.addEventListener('submit', function () {
 
 	const name = document.querySelector('.options-popup__name-field').value;
 	setCookie('name', name);
+	changeNameRequest(URLs.patchRequest);
 
 	document.querySelector('.options-popup__name-field').value = '';
 	UI_ELEMENTS.popups.popupOverlay.style.display = 'none';
@@ -62,7 +63,6 @@ UI_ELEMENTS.popups.confirmationForm.addEventListener('submit', function () {
 
 	const token = document.querySelector('.confirmation-popup__code-field').value;
 	setCookie('token', token);
-	changeNameRequest(URLs.patchRequest);
 
 	document.querySelector('.confirmation-popup__code-field').value = '';
 	UI_ELEMENTS.popups.popupOverlay.style.display = 'none';
@@ -101,7 +101,7 @@ function sendAuthorizationCode(URL) {
 		email: document.querySelector('.authorization-popup__mail-field').value,
 	}
 
-	return fetch(`${URL}`, {
+	fetch(`${URL}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
@@ -115,7 +115,7 @@ function changeNameRequest(URL) {
 		name: getCookie('name'),
 	}
 
-	return fetch(`${URL}`, {
+	fetch(`${URL}`, {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
