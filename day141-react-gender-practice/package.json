@@ -1,5 +1,5 @@
 {
-  "name": "my-react-app",
+  "name": "day141-react-gender-practice",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -13,6 +13,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",
-    "vite": "^2.8.5"
+    "vite": "^2.8.0"
   }
 }
