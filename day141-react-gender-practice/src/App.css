@@ -23,7 +23,8 @@ body {
 }
 
 .form__name-input,
-.content__result-field {
+.content__result-field,
+.content__error {
     margin-bottom: 15px;
     height: 30px;
 
@@ -64,4 +65,9 @@ body {
 .content__result-field {
     color: #525252;
     text-align: center;
+}
+
+.content__error {
+    text-align: center;
+    background-color: yellow;
 }
